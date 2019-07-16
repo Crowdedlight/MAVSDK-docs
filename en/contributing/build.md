@@ -186,19 +186,19 @@ make android install
 
 ## Build for iOS {#build_cpp_iOS}
 
-> **Warning** You must first build the C++ Library (as shown above).
+> **Warning** You must first build the C++ Library with `mavsdk_server` (i.e. with `-DBACKEND=ON`, as shown [Building the Backend](#build_backend)).
 
 To build for real iOS devices on macOS:
 
 ```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=tools/ios.toolchain.cmake -Bbuild/ios -H.
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_BACKEND=ON -DBUILD_SHARED_LIBS=OFF -DCMAKE_TOOLCHAIN_FILE=tools/ios.toolchain.cmake -DPLATFORM=OS -Bbuild/ios -H.
 cmake --build build/ios
 ```
 
 Build for the iOS simulator on macOS:
 
 ```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=tools/ios.toolchain.cmake -DPLATFORM=SIMULATOR64 -Bbuild/ios_simulator -H.
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_BACKEND=ON -DBUILD_SHARED_LIBS=OFF -DCMAKE_TOOLCHAIN_FILE=tools/ios.toolchain.cmake -DPLATFORM=SIMULATOR64 -Bbuild/ios_simulator -H.
 ```
 
 ## Build SDK Extensions {#sdk_extensions}
@@ -227,7 +227,7 @@ To build the backend on Ubuntu:
 1. Navigate into the SDK directory and build the project
    ```
    cd MAVSDK
-   cmake -DBUILD_BACKEND=ON -Bbuild/default -H.
+   cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_BACKEND=ON -Bbuild/default -H.
    cmake --build build/default
    ```
 
@@ -238,7 +238,7 @@ To build the backend on macOS:
 1. Navigate into the SDK directory and build the project
    ```
    cd MAVSDK
-   cmake -DBUILD_BACKEND=ON -Bbuild/default -H.
+   cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_BACKEND=ON -Bbuild/default -H.
    cmake --build build/default
    ```
 
